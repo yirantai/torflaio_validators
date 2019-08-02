@@ -2,7 +2,7 @@
 import datetime
 
 from .exceptions import ParamsValidationError
-from src.utils.time_tools import dt_str_to_datetime
+from .time_tools import dt_str_to_datetime
 
 
 class BaseField(object):
