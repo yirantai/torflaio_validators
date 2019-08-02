@@ -55,8 +55,9 @@ class PersonInfoValidator(BaseValidator):
             raise ParamsValidationError(err_code=400, err_msg="年龄不能小于18岁")    # 此处的ParamsValidationError为该验证框架默认Error类, 也可以根据喜好自定义抛出的错误
         return validated_data
 ```
-### 使用备注：
 
 #### 联系作者：
-  email: 896275756@qq.com
-  由于水平有限，难免有未知bug和考虑不周之处，如您有好的意见或建议，请发邮件给我，一起探讨和完善，您的意见或建议将会体现在下一次的版本更新里。
+```
+email: 896275756@qq.com
+由于水平有限，难免有未知bug和考虑不周之处，如您有好的意见或建议，请发邮件给我，一起探讨和完善. 您的意见或建议将会体现在下一次的版本更新里。
+```
