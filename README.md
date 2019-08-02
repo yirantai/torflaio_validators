@@ -1,6 +1,8 @@
 ## torflaio_validators
 ```
-背景：在使用python web框架，如tornado, flask, aiohttp等框架时, 不同的人有不同的验证方式, 搞得项目很杂乱. 以前用Django框架,django-rest-framework中serializers类的参数验证时,很正规，使用体验也非常好.故本参数验证按照django-rest-framework的serializers参数验证的使用风格开发的.用于统一tornado, flask, aiohttp等python框架的参数验证.
+背景：在使用python web框架，如tornado, flask, aiohttp等框架时, 对于接口参入参数, 不同的人有不同的验证方式, 搞得项目很杂乱. 
+以前用Django框架,django-rest-framework中serializers类的参数验证时,很正规，使用体验也非常好.
+故参考django-rest-framework的serializers参数验证的风格开发的.用于统一tornado, flask, aiohttp等框架的参数验证方式.
 ```
 
 ### 版本说明：
@@ -33,7 +35,8 @@ validator = TaskQueryValidator(data)  # data为初始验证参数
 validator.validation()
 validated_data = validator.validated_data   # 此处获取的validated_data就是经过验证的数据了.
 
-3.如果不仅想要争字段的基本信息(是否必填, 默认值，最大长度,最小长度等)，还想验证业务相关的, 可以重新定义validator的valiated_data属性(property属性). 使用如下：
+3.如果不仅想要验证字段的基本信息(是否必填, 默认值，最大长度,最小长度等)，还想验证业务相关的,
+可以重新定义validator的valiated_data属性(property属性). 使用如下：
 
 from torflaio_validators.base.exceptions import ParamsValidationError
 
