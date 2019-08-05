@@ -32,7 +32,7 @@ class PersonInfoValidator(BaseValidator):
     extra = DictField()
     
 2.在view中引入该validator类
-validator = TaskQueryValidator(data)  # data为初始验证参数
+validator = PersonInfoValidator(data)  # data为初始验证参数
 validator.validation()
 validated_data = validator.validated_data   # 此处获取的validated_data就是经过验证的数据了.
 
