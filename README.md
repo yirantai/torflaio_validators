@@ -53,7 +53,7 @@ class PersonInfoValidator(BaseValidator):
     
     @propery
     def validated_data(self):
-        validated_data = self.validated_data    # 此步骤必须, 获取上一步验证后的数据
+        validated_data = super().validated_data    # 此步骤必须, 获取上一步验证后的数据
         age = validated_data.get('age')
         if age < 18:
             raise ParamsValidationError(err_code=400, err_msg="年龄不能小于18岁")    
