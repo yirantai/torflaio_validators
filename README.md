@@ -19,7 +19,8 @@ v1.0.0: 初始版本发布。
 from torflaio_validators.base.base_validator import BaseValidator
 from torflaio_validators.base.fields import IntegerField, CharField, BoolField, DictField
 
-1.先定义要验证的参数, 每个Field均包含 field_name field_value, required, default, max_length, min_length等参数,可以根据所验证的字段是否必填,默认值等进行选择.
+1.先定义要验证的参数, 每个Field均包含 field_name field_value, required, default, max_length, min_length等参数,
+可以根据所验证的字段是否必填,默认值等进行选择.
 class PersonInfoValidator(BaseValidator):
     name = CharField()
     age = IntegerField()
@@ -55,7 +56,8 @@ class PersonInfoValidator(BaseValidator):
         validated_data = self.validated_data    # 此步骤必须, 获取上一步验证后的数据
         age = validated_data.get('age')
         if age < 18:
-            raise ParamsValidationError(err_code=400, err_msg="年龄不能小于18岁")    # 此处的ParamsValidationError为该验证框架默认Error类, 也可以根据喜好自定义抛出的错误
+            raise ParamsValidationError(err_code=400, err_msg="年龄不能小于18岁")    
+            # 此处的ParamsValidationError为该验证框架默认Error类, 也可以根据喜好自定义抛出的错误
         return validated_data
 ```
 
