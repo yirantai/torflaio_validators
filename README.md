@@ -1,6 +1,6 @@
 ## torflaio_validators
 ```
-背景：在使用python web框架，如tornado, flask, aiohttp等框架时, 对于接口参入参数, 不同的人有不同的验证方式, 搞得项目很杂乱. 
+背景：在使用python web框架，如tornado, flask, aiohttp等框架时, 对于接口传入参数, 不同的人有不同的验证方式, 搞得项目很杂乱. 
 以前用Django框架,django-rest-framework中serializers类的参数验证时,很正规，使用体验也非常好.
 故参考django-rest-framework的serializers参数验证的风格开发的.用于统一tornado, flask, aiohttp等框架的参数验证方式.
 ```
