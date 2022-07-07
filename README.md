@@ -1,26 +1,26 @@
 ## torflaio_validators
 ```
-背景：在使用python web框架，如tornado, flask, aiohttp等框架时, 对于接口传入参数, 不同的人有不同的验证方式, 搞得项目很杂乱. 
-以前用Django框架,django-rest-framework中serializers类的参数验证时,很正规，使用体验也非常好.
-故参考django-rest-framework的serializers参数验证的风格开发的.用于统一tornado, flask, aiohttp等框架的参数验证方式.
+Background: when using Python web frameworks, such as tornado, flask, aiohttp and so on, 
+different people have different verification methods for interface input parameters, 
+which makes the project very messy
+In the past, when using the Django framework, the parameters of the serializers class in the Django rest 
+framework were verified, it was very formal and had a very good experience
+Therefore, it is developed with reference to the serializers parameter verification style of Django rest framework
+It is used to unify the parameter verification methods of tornado, flask, aiohttp and other frameworks
 ```
 
-### 版本说明：
-```
-v1.0.1: 优化项目结构。
-v1.0.0: 初始版本发布。
-```
-
-### 安装：
+### usage：
   pip install torflaio_validators
 
-### 使用样例:
+### usage example:
 ```
 from torflaio_validators.base.base_validator import BaseValidator
 from torflaio_validators.base.fields import IntegerField, CharField, BoolField, DictField
 
-1.先定义要验证的参数, 每个Field均包含 field_name field_value, required, default, max_length, min_length等参数,
-可以根据所验证的字段是否必填,默认值等进行选择.
+1.First define the parameters to be verified, and each field contains a field_ name field_ value, required,
+ default, max_ length, min_ Length and other parameters,
+You can choose according to whether the verified field is required, default value, etc
+
 class PersonInfoValidator(BaseValidator):
     name = CharField()
     age = IntegerField()
@@ -31,15 +31,17 @@ class PersonInfoValidator(BaseValidator):
     is_valid = BoolField(required=False, default=True)
     extra = DictField()
     
-2.在view中引入该validator类
-validator = PersonInfoValidator(data)  # data为初始验证参数
+2.Introduce the validator class in view to verify whether the passed in parameters are legal
+validator = PersonInfoValidator(data)
 validator.validation()
-validated_data = validator.validated_data   # 此处获取的validated_data就是经过验证的数据了.
+validated_data = validator.validated_data   # the validated_data is valid.
 
-3.如果不仅想要验证字段的基本信息(是否必填, 默认值，最大长度,最小长度等)，还想验证业务相关的,
-可以重新定义validator的valiated_data属性(property属性). 使用如下：
+3. If you want to verify not only the basic information of the field (whether it is required,
+ default value, maximum length, minimum length, etc.), but also the business-related,
+You can redefine the validated of the validated_data(property). Use the following:
 
 from torflaio_validators.base.exceptions import ParamsValidationError
+from torflaio_validators.base.fields import CharField, IntegerField, BoolField, DictField
 
 class PersonInfoValidator(BaseValidator):
     name = CharField()
@@ -53,16 +55,18 @@ class PersonInfoValidator(BaseValidator):
     
     @propery
     def validated_data(self):
-        validated_data = super().validated_data    # 此步骤必须, 获取上一步验证后的数据
+        validated_data = super().validated_data
         age = validated_data.get('age')
         if age < 18:
-            raise ParamsValidationError(err_code=400, err_msg="年龄不能小于18岁")    
-            # 此处的ParamsValidationError为该验证框架默认Error类, 也可以根据喜好自定义抛出的错误
+            raise ParamsValidationError(err_code=400, err_msg="the age should not under 18.")    
+            # the ParamsValidationError class is the default Error class, you can customize the error class
         return validated_data
 ```
 
-#### 联系作者：
+#### contact：
 ```
 email: 896275756@qq.com
-由于水平有限，难免有未知bug和考虑不周之处，如您有好的意见或建议，请发邮件给我，一起探讨和完善. 您的意见或建议将会体现在下一次的版本更新里。
+Due to the limited level, it is inevitable to have unknown bugs and thoughtless places. 
+If you have good comments or suggestions, please email me to discuss and improve together 
+Your comments or suggestions will be reflected in the next version update.
 ```
